@@ -5,11 +5,6 @@
 
 #include <QObject>
 
-#define DISPLAY_ERROR_MESSAGE_CODE "DISPLAY_ERROR_MESSAGE_CODE"
-#define DISPLAY_TEXT_INFO_CODE     "DISPLAY_TEXT_INFO_CODE"
-#define RESPOND_RESULT             "RESPOND_RESULT"
-#define PASSWORD                   "PASSWORD"
-
 class DeepinAuthInterface;
 class DeepinAuthFramework : public QObject
 {
@@ -24,6 +19,7 @@ public slots:
     void SetUser(const QString &username);
     void Authenticate();
     void Cancel();
+    void setPassword(const QString &password);
 
 private:
     const QString RequestEchoOff(const QString &msg);

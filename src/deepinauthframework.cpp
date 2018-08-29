@@ -4,6 +4,8 @@
 #include <QTimer>
 #include <QVariant>
 
+static QString PASSWORD;
+
 DeepinAuthFramework::DeepinAuthFramework(DeepinAuthInterface *inter, QObject *parent)
     : QObject(parent)
     , m_interface(inter)
@@ -24,7 +26,7 @@ void DeepinAuthFramework::SetUser(const QString &username)
 
 void DeepinAuthFramework::Authenticate()
 {
-    if (!property(PASSWORD).toString().isEmpty()) {
+    if (!PASSWORD.isEmpty()) {
         m_keyboard->Authenticate();
     }
 
@@ -37,9 +39,14 @@ void DeepinAuthFramework::Cancel()
     m_fprint->Cancel();
 }
 
+void DeepinAuthFramework::setPassword(const QString &password)
+{
+    PASSWORD = password;
+}
+
 const QString DeepinAuthFramework::RequestEchoOff(const QString &msg)
 {
-    return property(PASSWORD).toString();
+    return PASSWORD;
 }
 
 const QString DeepinAuthFramework::RequestEchoOn(const QString &msg)

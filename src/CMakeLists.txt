@@ -14,3 +14,6 @@ target_link_libraries(libdde-auth PRIVATE
   ${Qt5DBus_LIBRARIES}
   ${Qt5Core_LIBRARIES}
 )
+
+# bin
+install(TARGETS libdde-auth DESTINATION lib/)
