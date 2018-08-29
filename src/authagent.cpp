@@ -1,8 +1,8 @@
 #include "authagent.h"
 #include "authdbusadapter.h"
 #include "deepinauthframework.h"
-#include "../dbus/com.deepin.daemon.Authority.h"
-#include "../dbus/com.deepin.daemon.authority.Transaction.h"
+#include "com.deepin.daemon.Authority.h"
+#include "com.deepin.daemon.authority.Transaction.h"
 
 #include <QDBusConnection>
 #include <QDateTime>
