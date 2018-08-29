@@ -1,4 +1,4 @@
-file(GLOB INTERFACES deepinauthframework.h)
+file(GLOB INTERFACES deepinauthinterface.h)
 
 ## dev files
 install (FILES ${INTERFACES}

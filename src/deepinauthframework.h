@@ -10,19 +10,15 @@
 #define RESPOND_RESULT             "RESPOND_RESULT"
 #define PASSWORD                   "PASSWORD"
 
+class DeepinAuthInterface;
 class DeepinAuthFramework : public QObject
 {
     Q_OBJECT
 public:
-    explicit DeepinAuthFramework(QObject *parent = nullptr);
+    explicit DeepinAuthFramework(DeepinAuthInterface *inter, QObject *parent = nullptr);
     ~DeepinAuthFramework();
 
     friend class AuthAgent;
-
-signals:
-    void displayErrorMsgChanged(const QString &msg) const;
-    void displayTextInfoChanged(const QString &msg) const;
-    void passwordResult(const QString &msg) const;
 
 public slots:
     void SetUser(const QString &username);
@@ -39,6 +35,7 @@ private:
 private:
     AuthAgent *m_keyboard;
     AuthAgent *m_fprint;
+    DeepinAuthInterface *m_interface;
 };
 
 #endif // DEEPINAUTHFRAMEWORK_H

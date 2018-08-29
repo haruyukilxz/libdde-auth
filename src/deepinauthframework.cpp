@@ -1,9 +1,12 @@
 #include "deepinauthframework.h"
+#include "../interface/deepinauthinterface.h"
 
 #include <QTimer>
+#include <QVariant>
 
-DeepinAuthFramework::DeepinAuthFramework(QObject *parent)
+DeepinAuthFramework::DeepinAuthFramework(DeepinAuthInterface *inter, QObject *parent)
     : QObject(parent)
+    , m_interface(inter)
 {
     m_keyboard = new AuthAgent(AuthAgent::Keyboard, this);
     m_fprint = new AuthAgent(AuthAgent::Fprint, this);
@@ -48,22 +51,19 @@ void DeepinAuthFramework::DisplayErrorMsg(AuthAgent::Type type, const QString &m
 {
     Q_UNUSED(type);
 
-    setProperty(DISPLAY_ERROR_MESSAGE_CODE, msg);
-    emit displayErrorMsgChanged(msg);
+    m_interface->onDisplayErrorMsg(msg.toStdString());
 }
 
 void DeepinAuthFramework::DisplayTextInfo(AuthAgent::Type type, const QString &msg)
 {
     Q_UNUSED(type);
 
-    setProperty(DISPLAY_TEXT_INFO_CODE, msg);
-    emit displayTextInfoChanged(msg);
+    m_interface->onDisplayTextInfo(msg.toStdString());
 }
 
 void DeepinAuthFramework::RespondResult(AuthAgent::Type type, const QString &msg)
 {
     if (type == AuthAgent::Fprint && msg.isEmpty()) return;
 
-    setProperty(RESPOND_RESULT, msg);
-    emit passwordResult(msg);
+    m_interface->onPasswordResult(msg.toStdString());
 }
