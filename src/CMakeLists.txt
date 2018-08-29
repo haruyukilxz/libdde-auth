@@ -1,0 +1,16 @@
+
+file(GLOB SRCS "*.h" "*.cpp")
+
+include_directories(../dbus)
+
+find_package(PkgConfig REQUIRED)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5DBus REQUIRED)
+
+add_library(libdde-auth SHARED ${SRCS})
+set_target_properties(libdde-auth PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../)
+target_include_directories(libdde-auth PUBLIC ../interface)
+target_link_libraries(libdde-auth PRIVATE
+  ${Qt5DBus_LIBRARIES}
+  ${Qt5Core_LIBRARIES}
+)
