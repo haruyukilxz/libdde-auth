@@ -17,4 +17,5 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif ()
 
 add_subdirectory("interface")
+add_subdirectory("dbus")
 add_subdirectory("src")
