@@ -1,5 +1,6 @@
 
 file(GLOB SRCS "*.h" "*.cpp")
+file(GLOB HEADERS "*.h")
 
 include_directories(../dbus)
 
@@ -17,3 +18,7 @@ target_link_libraries(libdde-auth PRIVATE
 
 # bin
 install(TARGETS libdde-auth DESTINATION lib/)
+
+## dev files
+install (FILES ${HEADERS}
+         DESTINATION include/libdde-auth)
